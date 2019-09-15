@@ -1,0 +1,25 @@
+pipeline { 
+    agent { label 'Java' } 
+	tools {
+		maven 'maven-3.6.2'
+		jdk "JDK1.8"
+	}
+	triggers {
+		cron('H H/3 * * *')
+	}
+	options {
+		buildDiscarder(logRotator(daysToKeepStr: '2', numToKeepStr: '3'))
+	}
+    stages { 
+        stage ("SCM Chkout-1"){
+            steps {
+                git 'https://github.com/Vishwanathms/SampleMaven'
+            }
+		}
+		stage ("maven package"){
+			steps { 
+				sh "mvn package"
+			}
+		}
+	}
+}
