@@ -8,7 +8,7 @@ pipeline {
 		cron('H H/3 * * *')
 	}
 	options {
-		buildDiscarder(logRotator(daysToKeepStr: '2', numToKeepStr: '3'))
+		buildDiscarder(logRotator(daysToKeepStr: '2', numToKeepStr: '4'))
 	}
     stages { 
         stage ("SCM Chkout-1"){
